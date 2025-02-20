@@ -1,0 +1,159 @@
+@font-face {
+    font-family: '1';
+    src: url(./KFOlCnqEu92Fr1MmEU9fBBc4.ttf);
+}
+@font-face {
+    font-family: '2';
+    src: url(./KFOmCnqEu92Fr1Mu4mxK.ttf);
+}
+@font-face {
+    font-family: '3';
+    src: url(./plain-light-webfont.ttf);
+}
+@font-face {
+    font-family: '4';
+    src: url(./plain-regular-webfont.ttf);
+}
+@font-face {
+    font-family: '5';
+    src: url(./silkserif-lightitalic-webfont.ttf);
+}
+@font-face {
+    font-family: '6';
+    src: url(./silkserif-regularitalic-webfont.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    
+}
+html , body{
+    height: 100%;
+    width: 100%;
+}
+#loader{
+    height: 100%;
+    width: 100%;
+    background-color: #030303;
+    z-index: 999;
+    position: fixed;
+    padding: 20vh 5vw;
+}
+.line{
+    font-size: 3vw;
+    font-weight: 200;
+    font-family: '3';
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: .35vw;
+    overflow: hidden;
+}
+.line:nth-child(1){
+    display: flex;
+    /* align-items: center; */
+    margin-left: 2%;
+    /* border-top: 1px solid white; */
+}  
+.line:nth-child(1) span{
+    display: flex;
+    gap: 1.4vw;
+}
+.line:nth-child(1)>h1{
+    margin-left: 5%;
+    display: inline;
+}   
+.line:nth-child(1)>span>h1{
+    font-family: '5';
+    display: flex;
+    font-size: 2.8vw;
+    font-weight: 500;
+}
+#timer{
+    margin-top: .6vw;
+}
+#counter {
+    display: block;
+    text-align: right;
+    width: 5vw;
+}
+.line:nth-last-child(1){
+    font-size: .7vw;
+    font-weight: 100 !important;
+    text-transform: none;
+    line-height: 1 !important;
+    letter-spacing: .5px !important;
+    font-family: '2';
+    margin-left: 23.5%;
+    margin-top: 5%;
+    opacity: .9;
+    /* background-color: blue; */
+    position: relative;
+}
+.line:nth-last-child(2)>h1{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+.line:nth-last-child(2)>h1>span{
+    animation-duration: 2.5s;
+    opacity: 0;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transition: cubic-bezier(.24,.68,.95,1.04);
+    font-weight: 400;
+    font-size: 6vw;
+    /* background-color: red;     */
+}
+@keyframes changing {
+    0%{
+        color: white;
+        font-family: '3';
+    }
+    10%{
+        opacity:0
+    }
+    25%{
+        opacity: 1;
+        font-family: '5';
+        -webkit-text-stroke: 1px white;
+        color: transparent;
+    }
+    35%{
+        opacity:0
+    }
+    50%{
+        opacity: 1;
+        font-family: '3';
+        color: white;
+    }
+    60%{
+        opacity:0
+    }
+    75%{
+        opacity: 1;
+        font-family: '5';
+        -webkit-text-stroke: 1px white;
+        color: transparent;
+    }
+    80%{
+        opacity:0
+    }
+    100%{
+        opacity: 1;
+        color: white;
+        font-family: '3';
+    }
+}
+#main{
+    position: relative;
+    background-color: black;
+}   
+#page1{
+    height: 100vh;
+    width: 100%;
+    background-color: #151515;
+    /* background-color: red; */
+}
