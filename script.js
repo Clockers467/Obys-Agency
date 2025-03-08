@@ -67,9 +67,9 @@ function loadingAnimation() {
     })
     tl.to("#loader", {
         opacity: 0,
-        // delay:3.5,
-        delay: 0,
-        // duration: 0.3,
+        delay:3.5,
+        // delay: 0,
+        duration: 0.3,
     })
     tl.from("#page1", {
         y: 1200,
@@ -111,6 +111,7 @@ function cursorAnimation() {
             left: dets.x,
             top: dets.y,
             // speed: 5,
+            opacity:1,
             duration:.1,
             transform: "translate(-50%,-50%)",
             // ease: "elastic.out(1.2,0.5)",
@@ -182,7 +183,7 @@ function cursorAnimation() {
             duration: 3,
         })
     });
-    flags = 0
+    flag = 0
     vid.addEventListener("click",function(){
         if(flag == 0){
         videoIMG.style.opacity = 0;
@@ -194,7 +195,7 @@ function cursorAnimation() {
             transform: "translate(-50%,-50%)",
             scale: .5
         })
-        flags = 1;
+        flag = 1;
         }else{
             videoIMG.style.opacity = 1;
             videoIMG.style.display = "block";
@@ -204,7 +205,7 @@ function cursorAnimation() {
                 ease: "expo.out",
                 scale: 1,
             })
-            flags = 0;
+            flag = 0;
         }
 
     })
@@ -578,7 +579,7 @@ flag();
 // Split text into spans for animation
 // Function to split text into spans for animation
 // Splitting text into individual spans for animation
-var arr = document.querySelector(".fancyA")
+// var arr = document.querySelector(".fancyA")
 function splitTextIntoSpans(selector) {
     let element = document.querySelector(selector);
     let text = element.textContent;
@@ -600,21 +601,15 @@ textElement.addEventListener("mouseenter", function () {
     gsap.to("#THETEXT span", {
         opacity: 0,
         stagger: 0.05,
-        duration: 0.5,
-        fontFamily: "5",
-        
+        duration: 0.1,        
         onComplete: function () {
             gsap.to("#THETEXT span", {
                 opacity: 1,
                 stagger: 0.1,
-                duration: 0.5,
+                duration: 0.3,
                 ease: "power2.inOut",
-                fontFamily: "5",
             });
         }
-    });
-    gsap.to(".fancyA",{
-        left:"2vw",
     });
 });
 
@@ -624,18 +619,13 @@ textElement.addEventListener("mouseleave", function () {
         opacity: 0,
         stagger: 0.05,
         duration: 0.1,
-        fontFamily: "5",
         onComplete: function () {
             gsap.to("#THETEXT span", {
                 opacity: 1,
                 stagger: 0.1,
-                duration: 0.5,
+                duration: 0.4,
                 ease: "power2.inOut",
-                fontFamily: "5",
             });
         }
-    });
-    gsap.to(".fancyA",{
-        left:"0",
     });
 });
