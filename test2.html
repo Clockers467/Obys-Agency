@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            /* display: flex; */
+            /* flex-direction: column; */
+            overflow: hidden;
+            height: 3vw;
+            background-color: blue;
+        }
+        h1{
+            font-size: 2vw;
+            line-height: 1vw;
+            padding: 0 .6vw;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="first">Jash</h1>
+        <h1 id="second">Hari</h1>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        let fir = document.querySelector("#first");
+        let sec = document.querySelector("#second");
+
+        fir.addEventListener("mouseover", () => {
+            gsap.to(fir, { y: "-300%", duration: 0.5 });
+            gsap.to(sec, { y: "-300%", duration: 0.5 });
+        });
+
+        fir.addEventListener("mouseout", () => {
+            gsap.to(fir, { y: "0%", duration: 0.5 });
+            gsap.to(sec, { y: "0%", duration: 0.5 });
+        });
+    </script>
+</body>
+</html>

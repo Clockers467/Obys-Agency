@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perlin Noise Wobbly Blob</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplex-noise@2.4.0/simplex-noise.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .image-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .background-image, .foreground-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .foreground-image {
+            clip-path: polygon(50% 50%, 60% 40%, 70% 50%, 60% 60%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="https://picsum.photos/id/1003/500/500" class="background-image">
+        <img src="https://picsum.photos/id/1011/500/500" class="foreground-image">
+    </div>
+
+    <script>
+        
+        const overlay = document.querySelector(".foreground-image");
+        const noise = new SimplexNoise(); // Initialize Perlin Noise
+        let time = 0; // Noise Time Variable
+
+        function generatePerlinBlob(x, y) {
+            let points = 40; // More points = smoother blob
+            let baseRadius = 100; // Base size
+            let noiseScale = 10; // Increased noise influence for more wobble
+            let shape = "polygon(";
+
+            for (let i = 0; i < points; i++) {
+                let angle = (i / points) * Math.PI * 2;
+                let noiseValue = noise.noise2D(i * 0.1, time * 0.2); // Increased noise speed for more variation
+                let radius = baseRadius + noiseValue * noiseScale; // Apply noise
+
+                let px = x + radius * Math.cos(angle);
+                let py = y + radius * Math.sin(angle);
+
+                shape += `${px}px ${py}px, `;
+            }
+
+            return shape.slice(0, -2) + ")"; // Remove last comma
+        }
+
+        document.addEventListener("mousemove", (e) => {
+            let rect = overlay.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+
+            gsap.to(overlay, { 
+                clipPath: generatePerlinBlob(x, y), 
+                duration: 0.4, // Faster transition for a quicker response
+                ease: "expo.out" 
+            });
+        });
+
+        // Perlin Noise-Based Morphing (Natural & Organic Movement)
+        function animateBlob() {
+            let rect = overlay.getBoundingClientRect();
+            let x = rect.width / 2;
+            let y = rect.height / 2;
+            time += 0.1; // Increased time increment for faster motion
+
+            gsap.to(overlay, { 
+                clipPath: generatePerlinBlob(x, y), 
+                duration: 0.1, // Faster morphing for more fluid and rapid wobble
+                ease: "power1.inOut" 
+            });
+
+            requestAnimationFrame(animateBlob);
+        }
+
+        animateBlob(); // Start the animation loop
+    </script>
+
+</body>
+</html>
